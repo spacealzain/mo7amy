@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحامي أحمد يسين | صرح قانوني متكامل</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A365D', /* Deep Navy Blue - Trust, Comfort, Professional */
+                        accent: '#B79455',  /* Soft Gold - Not too bright */
+                        accentHover: '#9A7B4A',
+                        darkBg: '#0F172A',  /* Slate Dark for footer */
+                        light: '#FFFFFF',
+                        offWhite: '#F8FAFC' /* Very soft slate-blue-tinted white for backgrounds */
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F8FAFC; /* لون مريح جدا للعين */
+            color: #334155; /* رمادي داكن للقراءة بدلا من الأسود الصريح */
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-amiri {
+            font-family: 'Amiri', serif;
+            color: #1A365D; /* العناوين باللون الكحلي */
+        }
+
+        /* Hero Section Overlay - Navy Blue Tint with Blur */
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -15px; left: -15px; right: -15px; bottom: -15px;
+            /* تدرج كحلي هادئ فوق الصورة */
+            background-image: linear-gradient(rgba(26, 54, 93, 0.85), rgba(15, 23, 42, 0.95)), url('mo7amy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(6px);
+            z-index: 0;
+        }
+
+        /* Smooth reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Clean, Comfortable Card Hover */
+        .service-card {
+            transition: all 0.4s ease;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* ظل خفيف جداً */
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(26, 54, 93, 0.1); /* ظل كحلي ناعم */
+            border-color: #1A365D;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: #1A365D;
+        }
+        
+        .service-icon {
+            transition: all 0.4s ease;
+            color: #B79455; 
+        }
+
+        /* Elegant Button Hover */
+        .btn-elegant {
+            transition: all 0.3s ease;
+        }
+        .btn-elegant:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.15);
+        }
+
+        #menu-backdrop {
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header (Clean Navy) -->
+    <header class="bg-primary/95 backdrop-blur-md text-white sticky top-0 z-40 border-b border-white/10 transition-all duration-300 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3 font-amiri tracking-wide">
+                <i class="fas fa-balance-scale text-accent"></i>
+                المحامي أحمد يسين
+            </a>
+
+            <nav class="hidden md:flex gap-8 font-semibold text-base items-center">
+                <a href="#home" class="text-gray-200 hover:text-accent transition duration-300">الرئيسية</a>
+                <a href="#about" class="text-gray-200 hover:text-accent transition duration-300">عن المكتب</a>
+                <a href="#services" class="text-gray-200 hover:text-accent transition duration-300">الخدمات القانونية</a>
+                <a href="#contact" class="text-gray-200 hover:text-accent transition duration-300">اتصل بنا</a>
+            </nav>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none p-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="menu-backdrop" class="fixed inset-0 bg-primary/80 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Mobile Menu (Bottom Sheet) -->
+    <div id="mobile-menu" class="fixed bottom-0 left-0 w-full bg-white z-[60] rounded-t-3xl transform translate-y-full transition-transform duration-500 ease-in-out px-6 pt-4 pb-10 shadow-[0_-10px_40px_rgba(26,54,93,0.15)] flex flex-col">
+        <div class="w-16 h-1.5 bg-gray-200 rounded-full mx-auto mb-8"></div>
+        
+        <div class="flex flex-col gap-1">
+            <a href="#home" class="mobile-link text-lg font-bold py-4 text-primary border-b border-gray-100 flex items-center gap-4 hover:text-accent transition">
+                <div class="w-10 h-10 rounded-full bg-offWhite flex items-center justify-center text-accent"><i class="fas fa-home"></i></div> الرئيسية
+            </a>
+            <a href="#about" class="mobile-link text-lg font-bold py-4 text-primary border-b border-gray-100 flex items-center gap-4 hover:text-accent transition">
+                <div class="w-10 h-10 rounded-full bg-offWhite flex items-center justify-center text-accent"><i class="fas fa-user-tie"></i></div> عن المكتب
+            </a>
+            <a href="#services" class="mobile-link text-lg font-bold py-4 text-primary border-b border-gray-100 flex items-center gap-4 hover:text-accent transition">
+                <div class="w-10 h-10 rounded-full bg-offWhite flex items-center justify-center text-accent"><i class="fas fa-scale-balanced"></i></div> الخدمات القانونية
+            </a>
+            <a href="#contact" class="mobile-link text-lg font-bold py-4 text-primary border-b border-gray-100 flex items-center gap-4 hover:text-accent transition">
+                <div class="w-10 h-10 rounded-full bg-offWhite flex items-center justify-center text-accent"><i class="fas fa-envelope"></i></div> اتصل بنا
+            </a>
+        </div>
+        
+        <a href="tel:01012670006" class="mt-8 bg-primary text-white text-center font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-3 shadow-md hover:bg-blue-900 transition">
+            <i class="fas fa-phone-alt text-accent"></i> 010 1267 0006
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-[90vh] flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto reveal relative z-10">
+            <div class="inline-block border border-white/30 text-white px-6 py-2 rounded-full mb-8 backdrop-blur-sm bg-white/10">
+                <span class="font-bold text-sm md:text-base tracking-widest font-amiri uppercase">مكتب محاماة واستشارات قانونية</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl text-white leading-tight mb-6 font-amiri font-bold drop-shadow-md">
+                 مكتب محاماة لجميع القضايا وتوثيق العقود
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 font-light max-w-2xl mx-auto leading-relaxed drop-shadow">
+                نجمع بين الخبرة العميقة والاحترافية لتقديم استشارات قانونية دقيقة وحلولاً حاسمة لكافة النزاعات.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:01012670006" class="btn-elegant bg-accent text-white font-bold text-lg py-3.5 px-8 rounded shadow-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-gavel"></i> احجز استشارتك الآن
+                </a>
+                <a href="https://wa.me/201012670006" target="_blank" class="btn-elegant bg-white/10 backdrop-blur-sm border border-white/50 text-white font-bold text-lg py-3.5 px-8 rounded hover:bg-white hover:text-primary transition duration-300 flex items-center justify-center gap-3">
+                    <i class="fab fa-whatsapp text-2xl"></i> تواصل عبر واتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Clean White) -->
+    <section id="about" class="py-20 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16 max-w-6xl mx-auto reveal">
+                <div class="w-full lg:w-1/2 order-2 lg:order-1">
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 h-1 bg-accent"></div>
+                            <span class="text-accent font-bold text-lg tracking-wider font-amiri">نبذة عنا</span>
+                        </div>
+                        <h2 class="text-primary font-bold text-3xl md:text-4xl font-amiri leading-tight">حماية حقوقك هي <br>مهمتنا الأولى</h2>
+                    </div>
+                    
+                    <p class="text-slate-600 text-lg leading-relaxed text-justify mb-5">
+                        "أهلا بكم مع مكتب المستشار/ <span class="text-primary font-bold">أحمد يسين</span> المحامي المتخصص في جميع أنواع القضايا على مستوى مصر. نقدم خدماتنا بمهنية عالية في قضايا الأسرة والأحوال الشخصية، الجنح والجنايات، القضايا العسكرية، المالية والإقتصادية."
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed text-justify mb-8">
+                        بالإضافة إلى خدمات تأسيس الشركات بكافة أنواعها، وتوثيق عقود الزواج وزواج الأجانب. نعتبر من أفضل مكاتب المحاماة بخبرة تمتد لسنوات طويلة من النجاح.
+                    </p>
+                    
+                    <div class="flex items-center gap-5 pt-6 border-t border-slate-100">
+                        <div class="w-14 h-14 rounded-full bg-offWhite flex items-center justify-center text-primary text-2xl shadow-sm border border-slate-200">
+                            <i class="fas fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-primary text-xl font-amiri">المستشار أحمد يسين</h4>
+                            <p class="text-slate-500 text-sm mt-1">محامٍ بالنقض والدستورية العليا</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 order-1 lg:order-2 relative">
+                    <div class="absolute -inset-4 bg-offWhite rounded-lg z-0 hidden md:block transform translate-x-4 translate-y-4"></div>
+                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&q=80&w=1000" alt="مكتب المحامي" class="rounded-lg shadow-xl w-full object-cover h-[450px] relative z-10 border border-slate-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Soft Off-White) -->
+    <section id="services" class="py-20 bg-offWhite relative border-y border-slate-200">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-accent font-bold text-sm tracking-wider mb-2 block font-amiri">مجالات التخصص</span>
+                <h2 class="font-bold text-3xl md:text-4xl mb-4 font-amiri text-primary">الخدمات القانونية</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-file-signature text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">توثيق عقود الزواج</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">توثيق عقود الزواج، الزواج العرفي، وزواج الأجانب وفقاً للإجراءات المعتمدة.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-users text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">قضايا الأسرة</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">معالجة كافة قضايا الأحوال الشخصية بسرية تامة تضمن استقرار الأسرة.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-gavel text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">الجنح والجنايات</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">دفاع قانوني صلب في المحاكم الجنائية والمدنية لحماية حقوق موكلينا.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-balance-scale-right text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">القتل والمخدرات</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">خبرة واسعة في التعامل مع القضايا الجنائية الكبرى وتدقيق الأدلة.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-money-bill-wave text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">الأموال العامة</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">متابعة دقيقة لقضايا الأموال العامة والنصب للحفاظ على الممتلكات.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-shield-alt text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">القضايا العسكرية</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">تمثيل قانوني ذو كفاءة أمام المحاكم العسكرية والمنازعات السياسية.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-building text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">القضايا الإقتصادية</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">استشارات ضريبية ومالية وتأسيس الشركات لنمو أعمالك بأمان.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-lg text-center reveal border-t-4 border-t-transparent hover:border-t-primary" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 mx-auto bg-slate-50 rounded-full flex items-center justify-center mb-5 border border-slate-100 shadow-sm">
+                        <i class="fas fa-unlock-alt text-xl service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 font-amiri text-primary">رفع الحجز البنكي</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">اتخاذ الإجراءات السريعة لرفع الحجوزات وإلغاء المنع من التصرف.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Clean Split) -->
+    <section id="contact" class="py-20 relative bg-white">
+        <div class="container mx-auto px-6 reveal">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-xl max-w-5xl mx-auto flex flex-col md:flex-row border border-slate-100">
+                
+                <div class="w-full md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+                    <span class="text-accent font-bold text-sm tracking-wider mb-2 block font-amiri">تواصل معنا</span>
+                    <h2 class="font-bold text-3xl mb-5 text-primary font-amiri">معلومات الاتصال</h2>
+                    <p class="mb-8 text-slate-500 leading-relaxed text-sm">يسعدنا استقبال استفساراتكم وتحديد موعد لتقديم الاستشارة القانونية المناسبة لوضعكم.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-offWhite border border-slate-100 rounded-full flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-map-marker-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base mb-1 text-primary">مقر المكتب</h4>
+                                <p class="text-slate-500 text-sm leading-relaxed">القاهرة: كورنيش النيل بالمعادي<br>بجوار النادي النهري لنقابة المحامين</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-offWhite border border-slate-100 rounded-full flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-phone-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base mb-1 text-primary">الهاتف المباشر</h4>
+                                <a href="tel:01012670006" class="text-slate-600 hover:text-primary transition block font-bold" dir="ltr">010 1267 0006</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-50 border border-green-100 rounded-full flex items-center justify-center text-green-600 shrink-0">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base mb-1 text-primary">المراسلة الإلكترونية</h4>
+                                <a href="https://wa.me/201012670006" target="_blank" class="text-slate-500 hover:text-green-600 transition block text-sm">تواصل معنا عبر واتساب</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 bg-primary p-10 md:p-14 flex flex-col justify-center relative overflow-hidden">
+                    <!-- Subtle pattern -->
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
+                    <div class="relative z-10 text-center">
+                        <i class="fas fa-envelope-open-text text-4xl text-accent mb-5"></i>
+                        <h3 class="font-bold text-2xl mb-3 text-white font-amiri">تحديد موعد استشارة</h3>
+                        <p class="mb-8 text-blue-100 leading-relaxed text-sm">لضمان تقديم أفضل خدمة، يرجى التواصل معنا هاتفياً لتحديد موعد مسبق للمقابلة.</p>
+                        <a href="tel:01012670006" class="btn-elegant inline-block bg-white text-primary font-bold py-3 px-8 rounded w-full shadow-md">
+                            <i class="fas fa-phone-alt ml-2 text-accent"></i> اتصل بالمكتب الآن
+                        </a>
+                        <a href="https://wa.me/201012670006" target="_blank" class="btn-elegant inline-block bg-transparent border border-white/30 text-white font-bold py-3 px-8 rounded w-full mt-3 hover:bg-white/10 transition duration-300">
+                            <i class="fab fa-whatsapp ml-2"></i> رسالة واتساب
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkBg text-slate-400 border-t-4 border-primary pt-10 pb-6">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-6 border-b border-slate-800 pb-6">
+                
+                <div class="text-center md:text-right">
+                    <a href="#" class="text-xl font-bold text-white flex items-center justify-center md:justify-start gap-2 mb-2 font-amiri">
+                        <i class="fas fa-balance-scale text-accent"></i> المحامي أحمد يسين
+                    </a>
+                    <p class="text-sm text-slate-500">© 2026 مكتب المستشار أحمد يسين. جميع الحقوق محفوظة.</p>
+                </div>
+
+                <div class="flex gap-3">
+                     <a href="https://wa.me/201012670006" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-accent hover:text-white transition duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="tel:01012670006" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-accent hover:text-white transition duration-300">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div dir="ltr" class="text-xs text-slate-600 font-sans tracking-wider">
+                    Developed by <a href="https://al-zain.site" target="_blank" class="text-accent font-semibold hover:text-white transition-colors duration-300">Al-Zain</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Bottom Sheet Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const backdrop = document.getElementById('menu-backdrop');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            backdrop.classList.remove('hidden');
+            setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+            
+            menu.classList.remove('translate-y-full');
+            menu.classList.add('translate-y-0');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menu.classList.remove('translate-y-0');
+            menu.classList.add('translate-y-full');
+            
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+            
+            document.body.style.overflow = '';
+        }
+
+        btn.addEventListener('click', openMenu);
+        backdrop.addEventListener('click', closeMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        setTimeout(reveal, 100);
+    </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -20,12 +21,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1E3A8A',    /* أزرق داكن (Navy صريح) - يعطي طابع الشرطة/الداخلية */
-                        secondary: '#1E40AF',  /* أزرق أفتح للتباين */
-                        accent: '#2563EB',     /* أزرق ملكي للأزرار */
+                        primary: '#1E3A8A',
+                        secondary: '#1E40AF',
+                        accent: '#2563EB',
                         accentHover: '#1D4ED8',
-                        lightBg: '#F0F9FF',    /* خلفية زرقاء فاتحة جداً مريحة للعين */
-                        darkText: '#1E293B'    /* كحلي رمادي للنصوص بدلاً من الأسود */
+                        lightBg: '#F0F9FF',
+                        darkText: '#1E293B'
                     },
                     fontFamily: {
                         cairo: ['Cairo', 'sans-serif'],
@@ -37,10 +38,8 @@
     </script>
 
     <style>
-        /* التنسيقات العامة */
         body {
             font-family: 'Cairo', sans-serif;
-            scroll-behavior: smooth;
             background-color: #FFFFFF;
             color: #333333;
         }
@@ -49,11 +48,10 @@
             font-family: 'Amiri', serif;
         }
 
-        /* خلفية القسم الرئيسي مع تدرج داكن رسمي */
         .hero-section {
             position: relative;
-            /* تم إرجاع صورتك الأصلية هنا */
             background-image: url('mo7amy.jpg');
+            background-color: #1E3A8A; 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -67,18 +65,18 @@
             z-index: 1;
         }
 
-        /* حركة الظهور (Animation) */
+        /* حركة الظهور */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.8s ease-out;
+            transition: all 0.6s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* بطاقات الخدمات - تصميم كلاسيكي صلب */
+        /* بطاقات الخدمات */
         .service-card {
             background: #FFFFFF;
             border: 1px solid #E5E7EB;
@@ -95,16 +93,22 @@
             color: #1E3A8A;
         }
 
-        /* الأزرار الرسمية */
         .btn-accent {
             background-color: #1D4ED8;
             color: #FFFFFF;
             border: 2px solid #1D4ED8;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .btn-accent:hover {
             background-color: transparent;
             color: #1D4ED8;
+        }
+        
+        .form-btn:hover {
+            color: #FFFFFF !important;
+            background-color: #2563EB !important;
+            border-color: #2563EB !important;
         }
 
         .btn-outline {
@@ -118,328 +122,451 @@
             color: #0B1727;
         }
 
-        /* حاوية النقش العربي (اختياري للزينة) */
         .pattern-bg {
             background-image: radial-gradient(#1D4ED8 1px, transparent 1px);
             background-size: 20px 20px;
             opacity: 0.05;
         }
+        
+        .custom-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            color: #1E293B;
+            outline: none;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            background-color: white;
+        }
+        .custom-input:focus, .custom-input-focus {
+            border-color: #2563EB;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* تحسينات القائمة المنسدلة المخصصة */
+        .dropdown-menu-custom::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-menu-custom::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .dropdown-menu-custom::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        .dropdown-menu-custom::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
     </style>
 </head>
-<body class="overflow-x-hidden antialiased">
+<body class="overflow-x-hidden antialiased flex flex-col min-h-screen">
 
-    <!-- القائمة الرئيسية (Navbar) -->
+    <!-- القائمة الرئيسية -->
     <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- الشعار -->
-            <a href="#" class="flex items-center gap-3">
+            <a href="#home" class="flex items-center gap-3">
                 <div class="w-12 h-12 bg-primary text-white flex items-center justify-center rounded-sm shadow-sm">
                     <i class="fas fa-scale-balanced text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-primary font-official leading-none">الأستاذ محمد مندور</h1>
+                    <h1 class="text-2xl font-bold text-primary font-official leading-none">الأستاذ أحمد يسين</h1>
                     <span class="text-xs text-gray-500 font-cairo tracking-wide">للمحاماة والاستشارات القانونية</span>
                 </div>
             </a>
 
-            <!-- روابط الشاشات الكبيرة -->
             <nav class="hidden md:flex gap-8 items-center font-cairo font-semibold text-gray-700">
                 <a href="#home" class="hover:text-accent transition duration-300">الرئيسية</a>
                 <a href="#about" class="hover:text-accent transition duration-300">عن المكتب</a>
-                <a href="#services" class="hover:text-accent transition duration-300">التخصصات القانونية</a>
+                <a href="#services" class="hover:text-accent transition duration-300">التخصصات</a>
                 <a href="#contact" class="hover:text-accent transition duration-300">تواصل معنا</a>
-                <a href="tel:01012670006" class="bg-primary text-white px-6 py-2.5 rounded-sm font-official hover:bg-accent transition duration-300 shadow-sm">
-                    <i class="fas fa-gavel ml-2"></i> طلب استشارة
+                <a href="#contact" class="bg-primary text-white px-6 py-2.5 rounded-sm font-official hover:bg-accent transition duration-300 shadow-sm">
+                    <i class="fas fa-calendar-check ml-2"></i> احجز موعداً
                 </a>
             </nav>
 
-            <!-- زر القائمة للجوال -->
             <button id="mobile-menu-btn" class="md:hidden text-2xl text-primary focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
-        <!-- قائمة الجوال المنسدلة -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg z-40">
             <div class="flex flex-col px-6 py-4 gap-4 font-cairo font-semibold text-gray-700">
                 <a href="#home" class="mobile-link hover:text-accent border-b border-gray-50 pb-2">الرئيسية</a>
                 <a href="#about" class="mobile-link hover:text-accent border-b border-gray-50 pb-2">عن المكتب</a>
                 <a href="#services" class="mobile-link hover:text-accent border-b border-gray-50 pb-2">التخصصات القانونية</a>
                 <a href="#contact" class="mobile-link hover:text-accent border-b border-gray-50 pb-2">تواصل معنا</a>
-                <a href="tel:01012670006" class="bg-accent text-white text-center px-6 py-3 rounded-sm font-official mt-2 shadow-sm">
-                    <i class="fas fa-phone-alt ml-2"></i> 010 1267 0006
+                <a href="#contact" class="mobile-link bg-accent text-white text-center px-6 py-3 rounded-sm font-official mt-2 shadow-sm">
+                    <i class="fas fa-calendar-check ml-2"></i> احجز موعداً الآن
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- القسم الرئيسي (Hero Section) -->
-    <section id="home" class="hero-section min-h-[85vh] flex items-center relative overflow-hidden">
-        <div class="pattern-bg absolute inset-0 z-10"></div>
-        <div class="container mx-auto px-6 relative z-20">
-            <div class="max-w-3xl reveal">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-12 bg-white"></div>
-                    <span class="text-white font-cairo font-semibold tracking-wider text-sm">صرح قانوني متكامل</span>
-                </div>
-                <h2 class="text-4xl md:text-6xl text-white font-official font-bold leading-tight mb-6">
-                    الريادة في تقديم الاستشارات القانونية والدفاع عن الحقوق.
-                </h2>
-                <p class="text-lg md:text-xl text-gray-300 font-cairo mb-10 leading-relaxed max-w-2xl text-justify border-r-4 border-accent pr-4">
-                    نلتزم بتقديم أرقى مستويات الخدمة القانونية لعملائنا، معتمدين على خبرات متراكمة ونهج احترافي يضمن حماية مصالحك واسترداد حقوقك أمام كافة درجات التقاضي.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="tel:01012670006" class="btn-accent font-official text-lg px-8 py-3 rounded-sm font-bold text-center flex items-center justify-center gap-2">
-                        تحديد موعد استشارة
-                    </a>
-                    <a href="#services" class="btn-outline font-official text-lg px-8 py-3 rounded-sm font-bold text-center flex items-center justify-center gap-2">
-                        تصفح خدماتنا
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- عن المكتب (About Section) -->
-    <section id="about" class="py-24 bg-white relative">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-16 max-w-6xl mx-auto reveal">
-                <!-- النص -->
-                <div class="w-full lg:w-1/2">
-                    <div class="mb-8">
-                        <span class="text-accent font-official text-lg block mb-2">نبذة تعريفية</span>
-                        <h2 class="text-primary font-bold text-3xl md:text-4xl font-official leading-tight mb-6">
-                            مؤسسة قانونية عريقة <br>تضع مصلحة العميل في المقام الأول
-                        </h2>
-                        <div class="w-16 h-1 bg-accent mb-6"></div>
+    <!-- حاوية المحتوى الديناميكي -->
+    <main class="flex-grow">
+        
+        <!-- القسم الرئيسي (Home) -->
+        <section id="home" class="hero-section min-h-[85vh] flex items-center relative overflow-hidden page-section">
+            <div class="pattern-bg absolute inset-0 z-10"></div>
+            <div class="container mx-auto px-6 relative z-20">
+                <div class="max-w-3xl reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="h-px w-12 bg-white"></div>
+                        <span class="text-white font-cairo font-semibold tracking-wider text-sm">صرح قانوني متكامل</span>
                     </div>
-                    
-                    <p class="text-gray-600 text-lg leading-relaxed text-justify mb-5 font-cairo">
-                        تأسس مكتب المستشار <strong class="text-primary">أحمد يسين</strong> على ركائز صلبة من النزاهة، الشفافية، والالتزام المهني. نقدم خدماتنا القانونية الشاملة على مستوى جمهورية مصر العربية، مدعومين بفريق عمل متميز وخبرة تمتد لسنوات في ساحات المحاكم.
+                    <h2 class="text-4xl md:text-6xl text-white font-official font-bold leading-tight mb-6">
+                        الريادة في تقديم الاستشارات القانونية والدفاع عن الحقوق.
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-300 font-cairo mb-10 leading-relaxed max-w-2xl text-justify border-r-4 border-accent pr-4">
+                        نلتزم بتقديم أرقى مستويات الخدمة القانونية لعملائنا، معتمدين على خبرات متراكمة ونهج احترافي يضمن حماية مصالحك واسترداد حقوقك.
                     </p>
-                    <p class="text-gray-600 text-lg leading-relaxed text-justify mb-8 font-cairo">
-                        نتخصص في القضايا الجنائية الكبرى، قضايا الأحوال الشخصية، المنازعات المدنية والاقتصادية، بالإضافة إلى تقديم الدعم القانوني الكامل للشركات والمستثمرين، وتوثيق العقود بكافة أنواعها وفقاً للإجراءات القانونية السليمة.
-                    </p>
-                    
-                    <div class="flex items-center gap-4 pt-6 border-t border-gray-200">
-                        <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center text-white text-2xl">
-                            <i class="fas fa-user-tie"></i>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="btn-accent font-official text-lg px-8 py-3 rounded-sm font-bold text-center flex items-center justify-center gap-2">
+                            تحديد موعد استشارة
+                        </a>
+                        <a href="#services" class="btn-outline font-official text-lg px-8 py-3 rounded-sm font-bold text-center flex items-center justify-center gap-2">
+                            تصفح خدماتنا
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- عن المكتب (About) -->
+        <section id="about" class="py-24 bg-white relative page-section">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-16 max-w-6xl mx-auto reveal">
+                    <div class="w-full lg:w-1/2">
+                        <div class="mb-8">
+                            <span class="text-accent font-official text-lg block mb-2">نبذة تعريفية</span>
+                            <h2 class="text-primary font-bold text-3xl md:text-4xl font-official leading-tight mb-6">
+                                مؤسسة قانونية عريقة <br>تضع مصلحة العميل في المقام الأول
+                            </h2>
+                            <div class="w-16 h-1 bg-accent mb-6"></div>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-primary text-xl font-official">المستشار / أحمد يسين</h4>
-                            <p class="text-gray-500 text-sm mt-1 font-cairo">للمحاماة والاستشارات القانونية</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- الصورة -->
-                <div class="w-full lg:w-1/2 relative">
-                    <!-- إطار زخرفي كلاسيكي خلف الصورة -->
-                    <div class="absolute -inset-4 border-2 border-accent/30 translate-x-4 translate-y-4 rounded-sm hidden md:block"></div>
-                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&q=80&w=1000" alt="مقر المكتب" class="rounded-sm shadow-2xl w-full object-cover h-[500px] relative z-10 grayscale-[20%]">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- الخدمات القانونية (Services Section) -->
-    <section id="services" class="py-24 bg-lightBg border-y border-gray-200">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <span class="text-accent font-official text-lg block mb-2">مجالات الممارسة</span>
-                <h2 class="font-bold text-3xl md:text-4xl font-official text-primary mb-4">التخصصات القانونية</h2>
-                <div class="w-20 h-1 bg-accent mx-auto"></div>
-                <p class="text-gray-600 mt-6 max-w-2xl mx-auto font-cairo">نقدم تغطية قانونية شاملة في مختلف فروع القانون، لضمان تقديم الرعاية القانونية المتكاملة لعملائنا من الأفراد والشركات.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                <!-- بطاقة خدمة -->
-                <div class="service-card p-8 text-center reveal">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-file-contract text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">توثيق العقود</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">صياغة وتوثيق العقود المدنية والتجارية، عقود الزواج، زواج الأجانب، بما يضمن الحماية القانونية لأطراف التعاقد.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 100ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-users text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">قضايا الأحوال الشخصية</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">تمثيل قانوني رصين في قضايا الأسرة، الطلاق، النفقات، والمواريث مع الحفاظ على السرية التامة لعملائنا.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 200ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-gavel text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">القضاء الجنائي</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">مرافعات ودفاع متخصص في قضايا الجنح والجنايات الكبرى أمام محاكم الاستئناف والنقض.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 300ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-balance-scale-right text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">القضايا العسكرية</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">خبرة ممتدة في التعامل مع القضاء العسكري والمنازعات ذات الطبيعة الخاصة وفق الأطر القانونية المعمول بها.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-building text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">قانون الشركات</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">تأسيس الشركات، صياغة اللوائح الداخلية، عمليات الدمج والاستحواذ، والتمثيل القانوني للكيانات التجارية.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 100ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-money-check-alt text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">القضايا الاقتصادية والمالية</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">معالجة المنازعات المالية، قضايا الأموال العامة، الشيكات، النصب، والمطالبات المالية المعقدة.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 200ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-lock-open text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">رفع الحجوزات البنكية</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">مباشرة الإجراءات القانونية العاجلة لرفع الحجز الإداري أو القضائي عن الأرصدة البنكية والممتلكات.</p>
-                </div>
-
-                <div class="service-card p-8 text-center reveal" style="transition-delay: 300ms;">
-                    <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
-                        <i class="fas fa-file-alt text-2xl text-accent service-icon transition-colors"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 font-official text-primary">الاستشارات القانونية</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-cairo">تقديم الرأي القانوني المكتوب والشفهي بدقة وموضوعية لدعم اتخاذ القرارات السليمة.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- التواصل (Contact Section) - تصميم كلاسيكي مقسم -->
-    <section id="contact" class="py-24 relative bg-white">
-        <div class="container mx-auto px-6 reveal">
-            <div class="max-w-6xl mx-auto flex flex-col md:flex-row border border-gray-200 shadow-lg">
-                
-                <!-- بيانات التواصل -->
-                <div class="w-full md:w-1/2 p-10 md:p-16 bg-white flex flex-col justify-center">
-                    <span class="text-accent font-official text-lg mb-2 block">المقر الرئيسي</span>
-                    <h2 class="font-bold text-3xl mb-6 text-primary font-official">بيانات التواصل</h2>
-                    <div class="w-12 h-1 bg-accent mb-8"></div>
-                    
-                    <p class="mb-10 text-gray-600 leading-relaxed font-cairo text-sm">نستقبل السادة العملاء في مقر المكتب الكائن بالقاهرة خلال مواعيد العمل الرسمية، ويُفضل تحديد موعد مسبق هاتفياً لضمان توفير الوقت الكافي لدراسة استشارتكم.</p>
-                    
-                    <div class="space-y-8 font-cairo">
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
-                                <i class="fas fa-map-marker-alt text-lg"></i>
+                        <p class="text-gray-600 text-lg leading-relaxed text-justify mb-5 font-cairo">
+                            تأسس مكتب المستشار <strong class="text-primary">أحمد يسين</strong> على ركائز صلبة من النزاهة، الشفافية، والالتزام المهني. نقدم خدماتنا القانونية الشاملة على مستوى جمهورية مصر العربية، مدعومين بفريق عمل متميز وخبرة تمتد لسنوات في ساحات المحاكم.
+                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed text-justify mb-8 font-cairo">
+                            نتخصص في القضايا الجنائية الكبرى، قضايا الأحوال الشخصية، المنازعات المدنية والاقتصادية، بالإضافة إلى تقديم الدعم القانوني الكامل للشركات والمستثمرين، وتوثيق العقود بكافة أنواعها وفقاً للإجراءات القانونية السليمة.
+                        </p>
+                        <div class="flex items-center gap-4 pt-6 border-t border-gray-200">
+                            <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center text-white text-2xl">
+                                <i class="fas fa-user-tie"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-lg mb-1 text-primary">عنوان المكتب</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">القاهرة - كورنيش النيل بالمعادي<br>بجوار النادي النهري لنقابة المحامين</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
-                                <i class="fas fa-phone-alt text-lg"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg mb-1 text-primary">الهاتف المباشر</h4>
-                                <a href="tel:01012670006" class="text-gray-600 hover:text-accent transition block" dir="ltr">010 1267 0006</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
-                                <i class="fab fa-whatsapp text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg mb-1 text-primary">واتساب الأعمال</h4>
-                                <a href="https://wa.me/201012670006" target="_blank" class="text-gray-600 hover:text-accent transition block text-sm">إرسال مستندات أو طلب موعد</a>
+                                <h4 class="font-bold text-primary text-xl font-official">المستشار / أحمد يسين</h4>
+                                <p class="text-gray-500 text-sm mt-1 font-cairo">محام بالنقض والإدارية العليا</p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- دعوة للعمل (CTA) -->
-                <div class="w-full md:w-1/2 bg-primary p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
-                    <div class="pattern-bg absolute inset-0 z-0"></div>
-                    
-                    <div class="relative z-10 text-center md:text-right">
-                        <i class="fas fa-balance-scale text-5xl text-accent mb-6 opacity-80"></i>
-                        <h3 class="font-bold text-3xl mb-4 text-white font-official leading-tight">هل تواجه نزاعًا قانونيًا ؟</h3>
-                        <p class="mb-10 text-gray-300 leading-relaxed font-cairo">لا تترك حقوقك للصدفة. تواصل مع نخبة من الخبراء القانونيين لتقييم موقفك القانوني وبناء استراتيجية دفاع محكمة.</p>
-                        
-                        <div class="space-y-4">
-                            <a href="tel:01012670006" class="btn-accent block w-full text-center font-official font-bold py-4 text-lg rounded-sm">
-                                <i class="fas fa-phone-alt ml-2"></i> اتصل بنا الآن
-                            </a>
-                            <a href="https://wa.me/201012670006" target="_blank" class="btn-outline block w-full text-center font-official font-bold py-4 text-lg rounded-sm">
-                                <i class="fab fa-whatsapp ml-2"></i> تواصل واتساب
-                            </a>
-                        </div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="absolute -inset-4 border-2 border-accent/30 translate-x-4 translate-y-4 rounded-sm hidden md:block"></div>
+                        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&q=80&w=1000" alt="مقر المكتب" class="rounded-sm shadow-2xl w-full object-cover h-[500px] relative z-10 grayscale-[20%]">
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- التذييل (Footer) - طابع كلاسيكي مهني -->
-    <footer class="bg-primary text-blue-200 border-t-4 border-accent pt-16 pb-8">
+        <!-- الخدمات (Services) -->
+        <section id="services" class="py-24 bg-lightBg border-y border-gray-200 page-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-accent font-official text-lg block mb-2">مجالات الممارسة</span>
+                    <h2 class="font-bold text-3xl md:text-4xl font-official text-primary mb-4">التخصصات القانونية</h2>
+                    <div class="w-20 h-1 bg-accent mx-auto"></div>
+                    <p class="text-gray-600 mt-6 max-w-2xl mx-auto font-cairo">نقدم تغطية قانونية شاملة في مختلف فروع القانون، لضمان تقديم الرعاية القانونية المتكاملة لعملائنا من الأفراد والشركات.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <div class="service-card p-8 text-center reveal">
+                        <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
+                            <i class="fas fa-file-contract text-2xl text-accent service-icon transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 font-official text-primary">توثيق العقود</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed font-cairo">صياغة وتوثيق العقود المدنية والتجارية، بما يضمن الحماية القانونية لأطراف التعاقد.</p>
+                    </div>
+                    <div class="service-card p-8 text-center reveal" style="transition-delay: 100ms;">
+                        <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-2xl text-accent service-icon transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 font-official text-primary">الأحوال الشخصية</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed font-cairo">تمثيل قانوني رصين في قضايا الأسرة، الطلاق، النفقات، والمواريث مع الحفاظ على السرية.</p>
+                    </div>
+                    <div class="service-card p-8 text-center reveal" style="transition-delay: 200ms;">
+                        <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
+                            <i class="fas fa-gavel text-2xl text-accent service-icon transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 font-official text-primary">القضاء الجنائي</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed font-cairo">مرافعات ودفاع متخصص في قضايا الجنح والجنايات الكبرى أمام محاكم الاستئناف والنقض.</p>
+                    </div>
+                    <div class="service-card p-8 text-center reveal" style="transition-delay: 300ms;">
+                        <div class="w-16 h-16 mx-auto bg-gray-50 border border-gray-200 rounded-sm flex items-center justify-center mb-6">
+                            <i class="fas fa-building text-2xl text-accent service-icon transition-colors"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 font-official text-primary">قانون الشركات</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed font-cairo">تأسيس الشركات، صياغة اللوائح الداخلية، والتمثيل القانوني للكيانات التجارية المختلفة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- التواصل (Contact) -->
+        <section id="contact" class="py-24 relative bg-white page-section">
+            <div class="container mx-auto px-6 reveal">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row border border-gray-200 shadow-lg rounded-sm overflow-hidden">
+                    <div class="w-full md:w-1/2 p-10 md:p-16 bg-white flex flex-col justify-center">
+                        <span class="text-accent font-official text-lg mb-2 block">المقر الرئيسي</span>
+                        <h2 class="font-bold text-3xl mb-6 text-primary font-official">بيانات التواصل</h2>
+                        <div class="w-12 h-1 bg-accent mb-8"></div>
+                        <p class="mb-10 text-gray-600 leading-relaxed font-cairo text-sm">نستقبل السادة العملاء في مقر المكتب الكائن بالقاهرة خلال مواعيد العمل الرسمية، يُرجى ملء نموذج الحجز لترتيب موعد لدراسة قضيتكم.</p>
+                        <div class="space-y-8 font-cairo">
+                            <div class="flex items-start gap-5">
+                                <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
+                                    <i class="fas fa-map-marker-alt text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1 text-primary">عنوان المكتب</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed">القاهرة - كورنيش النيل بالمعادي<br>بجوار النادي النهري لنقابة المحامين</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
+                                    <i class="fas fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1 text-primary">البريد الإلكتروني</h4>
+                                    <p class="text-gray-600 text-sm font-sans">info@yassin-lawfirm.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div class="w-12 h-12 bg-lightBg border border-gray-200 flex items-center justify-center text-primary rounded-sm shrink-0">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1 text-primary">ساعات العمل</h4>
+                                    <p class="text-gray-600 text-sm">الأحد - الخميس: 9:00 صباحاً - 5:00 مساءً<br>الجمعة والسبت: عطلة أسبوعية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 bg-primary p-10 md:p-16 relative overflow-hidden flex flex-col justify-center">
+                        <div class="pattern-bg absolute inset-0 z-0"></div>
+                        <div class="relative z-10 w-full">
+                            <h3 class="font-bold text-2xl mb-2 text-white font-official">احجز استشارتك القانونية</h3>
+                            <p class="mb-8 text-blue-200 text-sm font-cairo">املأ البيانات وسيقوم فريقنا بالتواصل معك لتأكيد الموعد.</p>
+                            <div id="success-msg" class="hidden bg-green-500 text-white p-4 rounded-sm mb-4 font-cairo text-center shadow-md">
+                                <i class="fas fa-check-circle text-2xl mb-2 block"></i>
+                                تم استلام طلبك بنجاح. سيتم مراجعته والتواصل معك قريباً.
+                            </div>
+                            <form id="contact-form" class="space-y-4" onsubmit="submitForm(event)">
+                                <div>
+                                    <input type="text" required placeholder="الاسم بالكامل" class="custom-input">
+                                </div>
+                                <div>
+                                    <input type="tel" required placeholder="رقم الهاتف (للتواصل معك)" class="custom-input text-right" dir="auto">
+                                </div>
+                                
+                                <!-- Custom Dropdown (بديلة للـ Select التقليدي) -->
+                                <div class="relative" id="custom-select-container">
+                                    <!-- Input مخفي عشان يشتغل مع الفورم برمجياً -->
+                                    <input type="hidden" id="consultation-type" required>
+                                    
+                                    <!-- الزر اللي بيظهر للمستخدم -->
+                                    <button type="button" id="dropdown-button" class="custom-input flex justify-between items-center w-full cursor-pointer text-gray-500">
+                                        <span id="dropdown-selected-text">اختر نوع الاستشارة</span>
+                                        <i class="fas fa-chevron-down text-sm transition-transform duration-300" id="dropdown-icon"></i>
+                                    </button>
+                            
+                                    <!-- القائمة المنسدلة -->
+                                    <ul id="dropdown-menu" class="absolute z-50 w-full bg-white border border-gray-200 mt-1 rounded-sm shadow-xl hidden max-h-48 overflow-y-auto dropdown-menu-custom text-gray-700">
+                                        <li class="px-4 py-3 hover:bg-lightBg hover:text-accent cursor-pointer transition-colors border-b border-gray-100 flex items-center gap-2" data-value="criminal"><i class="fas fa-gavel text-accent text-sm w-4"></i> قضايا جنائية</li>
+                                        <li class="px-4 py-3 hover:bg-lightBg hover:text-accent cursor-pointer transition-colors border-b border-gray-100 flex items-center gap-2" data-value="family"><i class="fas fa-users text-accent text-sm w-4"></i> أحوال شخصية</li>
+                                        <li class="px-4 py-3 hover:bg-lightBg hover:text-accent cursor-pointer transition-colors border-b border-gray-100 flex items-center gap-2" data-value="corporate"><i class="fas fa-building text-accent text-sm w-4"></i> تأسيس وشركات</li>
+                                        <li class="px-4 py-3 hover:bg-lightBg hover:text-accent cursor-pointer transition-colors border-b border-gray-100 flex items-center gap-2" data-value="civil"><i class="fas fa-file-contract text-accent text-sm w-4"></i> عقود ومنازعات مدنية</li>
+                                        <li class="px-4 py-3 hover:bg-lightBg hover:text-accent cursor-pointer transition-colors flex items-center gap-2" data-value="other"><i class="fas fa-balance-scale text-accent text-sm w-4"></i> استشارة عامة / أخرى</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <textarea required placeholder="اكتب نبذة مختصرة عن موضوع الاستشارة..." rows="3" class="custom-input resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="btn-accent form-btn block w-full text-center font-official font-bold py-3 text-lg rounded-sm mt-2">
+                                    إرسال الطلب <i class="fas fa-paper-plane ml-2 text-sm"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-primary text-blue-200 border-t-4 border-accent pt-16 pb-8 mt-auto">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12 border-b border-blue-800 pb-12">
-                
-                <!-- العمود الأول -->
                 <div class="col-span-1">
-                    <a href="#" class="text-2xl font-bold text-white flex items-center gap-3 mb-6 font-official">
+                    <a href="#home" class="text-2xl font-bold text-white flex items-center gap-3 mb-6 font-official">
                         <i class="fas fa-scale-balanced text-white opacity-90"></i> المستشار أحمد يسين
                     </a>
                     <p class="text-sm leading-relaxed font-cairo mb-6 text-blue-100">مؤسسة قانونية رائدة تسعى لترسيخ مبادئ العدالة وتقديم أرقى الخدمات الاستشارية والقضائية لعملائها الكرام.</p>
-                    <div class="flex gap-4">
-                        <a href="https://wa.me/201012670006" target="_blank" class="w-10 h-10 border border-blue-700 rounded-sm flex items-center justify-center hover:bg-accent hover:border-accent hover:text-white transition duration-300">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="tel:01012670006" class="w-10 h-10 border border-blue-700 rounded-sm flex items-center justify-center hover:bg-accent hover:border-accent hover:text-white transition duration-300">
-                            <i class="fas fa-phone"></i>
-                        </a>
-                    </div>
                 </div>
-
-                <!-- العمود الثاني -->
                 <div class="col-span-1">
                     <h4 class="text-white font-official text-xl mb-6 font-bold">روابط سريعة</h4>
+                    <!-- الروابط تعمل بنظام العزل -->
                     <ul class="space-y-3 font-cairo text-sm">
                         <li><a href="#home" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> الرئيسية</a></li>
-                        <li><a href="#about" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> نبذة عن المكتب</a></li>
-                        <li><a href="#services" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> التخصصات والمجالات</a></li>
-                        <li><a href="#contact" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> بيانات التواصل</a></li>
+                        <li><a href="#about" data-isolate="true" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> نبذة عن المكتب</a></li>
+                        <li><a href="#services" data-isolate="true" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> التخصصات والمجالات</a></li>
+                        <li><a href="#contact" data-isolate="true" class="hover:text-white text-blue-200 transition flex items-center gap-2"><i class="fas fa-chevron-left text-xs text-accent"></i> احجز استشارتك</a></li>
                     </ul>
                 </div>
             </div>
-
-            <!-- حقوق النشر -->
             <div class="flex flex-col md:flex-row justify-between items-center text-sm font-cairo text-blue-300">
                 <p>&copy; 2026 مكتب المستشار أحمد يسين. جميع الحقوق محفوظة.</p>
                 <div dir="ltr" class="mt-4 md:mt-0 text-xs tracking-wider">
-                    Developed with <span class="text-accent">&hearts;</span> by <a href="https://al-zain.site" target="_blank" class="text-white hover:text-accent transition">Al-Zain</a>
+                    Developed with <span class="text-accent">&hearts;</span> by <a href="#" class="text-white hover:text-accent transition">Al-Zain</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // إعدادات القائمة المنسدلة للجوال (Dropdown Menu) بدلاً من الـ Bottom Sheet
+        // --- أكواد القائمة المنسدلة المخصصة (Custom Dropdown) ---
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.getElementById('dropdown-icon');
+        const dropdownSelectedText = document.getElementById('dropdown-selected-text');
+        const hiddenInput = document.getElementById('consultation-type');
+        const dropdownOptions = dropdownMenu.querySelectorAll('li');
+
+        // فتح وإغلاق القائمة
+        dropdownButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('hidden');
+            dropdownIcon.classList.toggle('rotate-180');
+            dropdownButton.classList.toggle('custom-input-focus');
+        });
+
+        // اختيار عنصر من القائمة
+        dropdownOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.getAttribute('data-value');
+                // استخراج النص فقط بدون أيقونات الـ FontAwesome
+                const text = option.innerText.trim();
+                
+                hiddenInput.value = value;
+                dropdownSelectedText.innerText = text;
+                
+                // تغيير لون النص ليدل على أنه تم الاختيار
+                dropdownSelectedText.classList.remove('text-gray-500');
+                dropdownSelectedText.classList.add('text-gray-900');
+                
+                // إغلاق القائمة
+                dropdownMenu.classList.add('hidden');
+                dropdownIcon.classList.remove('rotate-180');
+                dropdownButton.classList.remove('custom-input-focus');
+            });
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+                dropdownIcon.classList.remove('rotate-180');
+                dropdownButton.classList.remove('custom-input-focus');
+            }
+        });
+
+
+        // --- إرسال الفورم الوهمي ---
+        function submitForm(event) {
+            event.preventDefault(); 
+            
+            // التأكد من اختيار نوع الاستشارة
+            if(!hiddenInput.value) {
+                dropdownButton.classList.add('border-red-500');
+                setTimeout(() => dropdownButton.classList.remove('border-red-500'), 2000);
+                return;
+            }
+
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('success-msg');
+            
+            form.style.display = 'none';
+            successMsg.classList.remove('hidden');
+            
+            // إرجاع الفورم لحالته الأصلية بعد 5 ثواني
+            setTimeout(() => {
+                form.reset();
+                
+                // إعادة ضبط القائمة المخصصة
+                hiddenInput.value = '';
+                dropdownSelectedText.innerText = 'اختر نوع الاستشارة';
+                dropdownSelectedText.classList.add('text-gray-500');
+                dropdownSelectedText.classList.remove('text-gray-900');
+
+                form.style.display = 'block';
+                successMsg.classList.add('hidden');
+            }, 5000);
+        }
+
+        // --- نظام التوجيه الذكي (Scroll vs Isolate) ---
+        let isIsolated = false;
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                let targetId = this.getAttribute('href').substring(1);
+                if (!targetId) targetId = 'home';
+                
+                const shouldIsolate = this.hasAttribute('data-isolate');
+
+                if (targetId === 'home') {
+                    document.getElementById('home').style.display = 'flex';
+                    document.getElementById('about').style.display = 'block';
+                    document.getElementById('services').style.display = 'block';
+                    document.getElementById('contact').style.display = 'block';
+                    isIsolated = false;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(reveal, 50);
+                } 
+                else if (shouldIsolate || isIsolated) {
+                    const sections = ['home', 'about', 'services', 'contact'];
+                    sections.forEach(id => {
+                        const sec = document.getElementById(id);
+                        if (sec) {
+                            sec.style.display = (id === targetId) ? 'block' : 'none';
+                        }
+                    });
+                    isIsolated = true;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(reveal, 50);
+                } 
+                else {
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+
+                const menu = document.getElementById('mobile-menu');
+                const btn = document.getElementById('mobile-menu-btn');
+                if (menu && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    if(btn) {
+                        btn.querySelector('i').classList.remove('fa-times');
+                        btn.querySelector('i').classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // --- قائمة الجوال ---
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
             const icon = btn.querySelector('i');
@@ -452,21 +579,13 @@
             }
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                btn.querySelector('i').classList.remove('fa-times');
-                btn.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // حركة الظهور عند التمرير (Scroll Reveal)
+        // --- حركة الظهور عند التمرير ---
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
+            var reveals = document.querySelectorAll("section:not([style*='display: none']) .reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
+                var elementVisible = 50; 
                 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
@@ -474,8 +593,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        setTimeout(reveal, 100); // تفعيل مبدئي
+        setTimeout(reveal, 100); 
     </script>
 </body>
 </html>
-
